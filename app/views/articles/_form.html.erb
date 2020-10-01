@@ -1,0 +1,39 @@
+<%= form_with(model: article, local: true) do |form| %>
+  <% if article.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(article.errors.count, "error") %> prohibited this article from being saved:</h2>
+
+      <ul>
+        <% article.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= form.label :image %>
+  <%= form.file_field :image %>
+
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+
+    <%= form.label :skill_list, 'タグをカンマ区切りで入力' %><br/>
+    <%= text_field_tag 'article[skill_list]', article.skill_list.join(',') %>
+  </div>
+
+  <div class="field">
+    <%= form.label :heading%>
+    <%= form.text_field :heading %>
+  </div>
+
+
+  <div class="field">
+    <%= form.label :content %>
+    <%= form.rich_text_area :content %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

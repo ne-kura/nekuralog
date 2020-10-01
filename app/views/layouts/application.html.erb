@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <head>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <nav class="amber darken-4" >
+      <div class="nav-wrapper">
+        <%= link_to("nekuralog","/",class: "brand-logo center waves-effect waves-light",method: "get")%>
+        <a href="#" data-target="slide-out" class="sidenav-trigger btn-flat waves-effect waves-light"><i class="material-icons">menu</i></a>
+      </div>
+      <ul id="slide-out" class="sidenav">
+        <li class=" amber darken-4">&emsp;tags</li>
+        <% @tags.each do |tag| %>
+          <li><%= link_to( tag.name+"("+tag.taggings_count.to_s+")", tag_path(tag.name),method: "get",class: "title_link")%></li>
+        <%end%>
+        <li class=" amber darken-4">&emsp;link</li>
+        <li><%= link_to("github","https://github.com/",method: "get",class: "title_link")%></li>
+        <li><%= link_to("twitter","https://twitter.com/",method: "get",class: "title_link")%></li>
+        <li><%= link_to("admin","/articles/setting",method: "get",class: "title_link")%></li>
+      </ul>
+    </nav>
+  </head>
+
+  <body>
+  <div class="container">
+    <div class="row">
+      <% if @mobile %>
+        <div class="col s12">
+      <% else %>
+        <div class="col s9">
+      <% end %>
+      <%= yield %>
+    </div>
+      <ul class="hide-on-small-only">
+        <div class="col s3">
+          <div class="card">
+            <div class="card-image">
+              <%= image_tag 'icon.jpeg' %>
+            </div>
+            <li>author:にーくら</li>
+            <li>東京で大学生をしてる。</li>
+          </div>
+          <div class="card-panel">
+            <span class="card-title">tags</span>
+            <br>
+            <div class="card-content">
+              <% @tags.each do |tag| %>
+                <li><%= link_to( tag.name+"("+tag.taggings_count.to_s+")", tag_path(tag.name),method: "get",class: "tag_link")%></li>
+              <%end%>
+            </div>
+          </div>
+          <div class="card-panel">
+            <span class="card-title">links</span>
+            <br>
+            <li><%= link_to("github","https://github.com/",method: "get",class: "tag_link")%></li>
+            <li><%= link_to("twitter","https://twitter.com/",method: "get",class: "tag_link")%></li>
+            <li><%= link_to("admin","/articles/setting",method: "get",class: "tag_link")%></li>
+          </div>
+        </div>
+      </ul>
+    </div>
+  </div>
+  </body>
+</html>

@@ -1,0 +1,61 @@
+@import 'materialize-css/dist/css/materialize';
+@media only screen and (max-width : 992px) {
+    header, main, footer {
+        padding-left: 0;
+    }
+}
+
+nav {
+    padding-left: 0px;
+    a:hover{
+        color: white;
+        background-color: #ff6f00;
+    }
+}
+section {
+    overflow: auto;
+}
+
+
+textarea {
+    resize: vertical;
+}
+.center {
+    text-align: center;
+}
+.center h1 {
+    margin-bottom: 10px;
+    padding-left: 100px;
+}
+.title_link{
+    color: black;
+    background-color: white;
+    &:hover{
+        color: #ff6f00;
+        background-color: white;
+    }
+    &:visited{
+        color: black;
+        background-color: white;
+        &:hover{
+            color: #ff6f00;
+            background-color: white;
+        }
+    }
+}
+.tag_link{
+    color: #ff6f00;
+    background-color: white;
+    &:hover{
+        color: black;
+        background-color: white;
+    }
+    &:visited{
+        color: #ff6f00;
+        background-color: white;
+        &:hover{
+            color: black;
+            background-color: white;
+        }
+    }
+}

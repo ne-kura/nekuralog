@@ -1,0 +1,9 @@
+<p id="notice"><%= notice %></p>
+<div class="card-panel">
+  <h6><%= @article.title %></h6>
+  <p class="right-align"><%= @article.created_at %></p>
+  <br>
+  <%= @article.content %>
+</div>
+
+<%= link_to( 'Back', articles_path,method: "get",class: "waves-effect waves-light btn-small amber accent-2" )%>

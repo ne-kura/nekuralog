@@ -1,0 +1,38 @@
+<p id="notice"><%= notice %></p>
+
+<% if params[:tag]%>
+  <div class="card-panel">
+    <h6>タグ：<%= params[:tag]%></h6>
+  </div>
+<%end%>
+
+<% @articles.each do |article| %>
+  <div class="low">
+    <div class="card darken-1">
+      <div class="card-content">
+        <span class="card-title"><%= link_to(article.title,article,method: "get",class: "title_link") %></span>
+        <% article.skill_list.each do |tag|%>
+          <%= link_to( tag, tag_path(tag),method: "get",class: "btn-flat right title_link")%>
+        <% end %>
+        <br>
+        <br>
+        <p><%= article.heading %></p>
+      </div>
+      <% if article.image != nil%>
+        <div class="card-content">
+          <div class="container">
+            <div class="row">
+              <%= image_tag(article.image.url,class: "col s12 center") %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+      <div class="card-action">
+        <%= link_to( 'Show more', article,method: "get",class: "waves-effect waves-light btn-small amber accent-2")%>
+      </div>
+    </div>
+  </div>
+  <br>
+<% end %>
+<%= paginate @articles %>
+
